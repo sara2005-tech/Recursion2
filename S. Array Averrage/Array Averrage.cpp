@@ -1,35 +1,26 @@
 #include <iostream>
 using namespace std;
 
-void printDigits(long long n)
+float average(int arr[], int n)
 {
-    if(n < 10)
-    {
-        cout << n << " ";
-        return;
-    }
+    if(n == 1)              // base case
+        return arr[0];
 
-    printDigits(n / 10);
-    cout << n % 10 << " ";
+    return (arr[n-1] + (n-1) * average(arr, n-1)) / n;
 }
 
 int main()
 {
-    int T;
-    cin >> T;
+    int n;
+    cin >> n;
 
-    while(T--)
-    {
-        long long N;
-        cin >> N;
+    int arr[n];
 
-        if(N == 0)
-            cout << 0;
-        else
-            printDigits(N);
+    for(int i = 0; i < n; i++)
+        cin >> arr[i];
 
-        cout << endl;
-    }
+    cout << average(arr, n);
 
     return 0;
 }
+
